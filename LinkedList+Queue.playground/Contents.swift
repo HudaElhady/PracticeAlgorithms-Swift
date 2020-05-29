@@ -86,3 +86,32 @@ extension LinkedList: CustomStringConvertible {
         return text + "]"
     }
 }
+// ----------------- Queue -----------
+public struct Queue<T> {
+    fileprivate var list = LinkedList<T>()
+    mutating func enqueue(_ element: T) {
+        list.append(value: element)
+    }
+    
+    mutating func dequue() -> T?{
+        guard !list.isEmpty, let element = list.first else {
+            return nil
+        }
+        list.remove(node: element)
+        return element.value
+    }
+    
+    func peek() -> T? {
+        return list.first?.value
+    }
+    
+    public var isEmpty: Bool {
+        return list.isEmpty
+    }
+}
+
+extension Queue: CustomStringConvertible {
+    public var description: String {
+        return list.description
+    }
+}
